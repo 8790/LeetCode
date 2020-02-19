@@ -36,7 +36,9 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int[] index = {0, numbers.length - 1};
-
+        if (numbers == null) {
+            return null;
+        }
         while(index[0] < index[1]) {
             int result = numbers[index[0]] + numbers[index[1]];
             if(result == target) {
