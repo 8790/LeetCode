@@ -36,15 +36,15 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        //递归解法
-        if (head == null || head.next == null) {
-            return head;
+        //迭代解法
+        ListNode newHead = new ListNode(-1);    // 仅仅是个假结点，后面那个结点才是要构造的新链表的头结点
+        while (head != null) {
+            ListNode next = head.next;  // 记录原来的head指针的下一个指针为next
+            head.next = newHead.next;   // 把最前面结点之后的结点变成构造的新链表
+            newHead.next = head;        // 把最前面结点放在第一个，在随后的循环中会不停往后挤实现逆转
+            head = next;                // 通过next指针让head 指针向后移动一位
         }
-        ListNode next = head.next;
-        ListNode newList = reverseList(next);
-        next.next = head;
-        head.next = null;
-        return newList;
+        return newHead.next;
     }
 }
 // @lc code=end
